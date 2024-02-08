@@ -38,6 +38,7 @@ class PlanningCrew:
         return Agent(
             role="Planner",
             goal="Read context and create a list of tasks to complete the objective(s).",
+            memory=True,
             tools=[
                 TaskManagerTools.read_context,
                 TaskRepositoryTools.get_current_tasks,
@@ -52,7 +53,7 @@ class PlanningCrew:
                     context and create a list of tasks for execution.
                 """
             ),
-            allow_delegation=True,
+            allow_delegation=False,
             verbose=True,
         )
 
@@ -64,6 +65,7 @@ class ExecutionCrew:
         return Agent(
             role="Executor",
             goal="Complete assigned tasks",
+            memory=True,
             tools=[
                 FileTools.append_to_file,
                 FileTools.check_if_file_exists,
@@ -87,6 +89,7 @@ class ExecutionCrew:
         return Agent(
             role="Reviewer",
             goal="Ensure tasks are completed satisfactorily.",
+            memory=True,
             tools=[
                 FileTools.check_if_file_exists,
                 FileTools.list_files,

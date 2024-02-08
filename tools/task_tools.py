@@ -54,11 +54,18 @@ class TaskStatuses:
         ]
 
 
+# TODO: revisit docstring like get_current_tasks for all functions
 class TaskRepositoryTools:
     @tool
     @staticmethod
     def get_current_tasks(role=None):
-        """Retrieves the current tasks for a specified role or all roles if no role is specified."""
+        """
+        Retrieves the current tasks for a specified role or all roles if no role is specified.
+        Args:
+            role: str, optional
+        Returns:
+            the current tasks for the specified role or all roles if no role is specified
+        """
         from agents_v2 import TaskRepository
 
         tasks_summary = []
